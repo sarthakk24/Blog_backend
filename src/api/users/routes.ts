@@ -1,10 +1,13 @@
 import { Router } from "express";
 import { handleLogin } from "./controllers/login.service";
+import { handleProfileView } from "./controllers/profileView.service";
 import { handleSignOut } from "./controllers/signup.service";
 
-const authRouter = Router();
+const userRouter = Router();
 
-authRouter.post("/login", handleLogin);
-authRouter.post("/signup", handleSignOut);
+userRouter.post("/login", handleLogin);
+userRouter.post("/signup", handleSignOut);
 
-export default authRouter;
+userRouter.get("/view/:id", handleProfileView);
+
+export default userRouter;
