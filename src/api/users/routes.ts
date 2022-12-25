@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { handleSignIn } from "./controllers/signin.service";
+import { handleLogin } from "./controllers/login.service";
 import { handleSignOut } from "./controllers/signup.service";
 
 const authRouter = Router();
 
-authRouter.post("/signin", handleSignIn);
-authRouter.post("/signout", handleSignOut);
+authRouter.post("/login", handleLogin);
+authRouter.post("/signup", handleSignOut);
 
 export default authRouter;

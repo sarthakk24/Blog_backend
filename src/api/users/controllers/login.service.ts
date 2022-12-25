@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-export const handleSignIn = async (
+export const handleLogin = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -9,7 +9,7 @@ export const handleSignIn = async (
     console.log("signIn");
     res.status(200).json({
       success: true,
-      message: "SignIn successful",
+      message: "Login successful",
     });
     next();
   } catch (err: any) {
