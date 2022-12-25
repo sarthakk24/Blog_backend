@@ -1,11 +1,12 @@
 import express from "express";
 import config from "./config/config";
+import { DBInstance } from "./loaders/database";
 import Loaders from "./loaders/express";
 
 async function startServer() {
   const app: express.Application = express();
-  await Loaders({ app });
-  console.log(config.port);
+  Loaders({ app });
+  await DBInstance.getInstance();
 
   app
     .listen(config.port, () => {
