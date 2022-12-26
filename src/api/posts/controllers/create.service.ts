@@ -22,17 +22,23 @@ export const createPosts = async (
       };
     }
 
+    const { title, content, keywords } = req.body;
+
     const currentPost = await Posts.create({
-      title: "testPost",
-      content: "test content",
+      title,
+      content,
       likes: 0,
       userId: user.dataValues.id,
     });
 
-    await Keywords.create({
-      keyword: "test keyword",
-      postId: currentPost.dataValues.id,
-    });
+    if (keywords?.length > 0) {
+      await keywords.forEach(async (el: string) => {
+        await Keywords.create({
+          keyword: el,
+          postId: currentPost.dataValues.id,
+        });
+      });
+    }
 
     res.status(200).json({
       success: true,
