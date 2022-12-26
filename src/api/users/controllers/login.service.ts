@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import User from "../../../models/sql/user";
 
 export const handleLogin = async (
   req: Request,
@@ -6,10 +7,25 @@ export const handleLogin = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    console.log("signIn");
+    const { email, password } = req.body;
+
+    const user = await User.findOne({
+      where: {
+        email,
+      },
+    });
+
+    if (!user) {
+      throw {
+        statusCode: 404,
+        message: "User not found",
+      };
+    }
+
     res.status(200).json({
       success: true,
       message: "Login successful",
+      data: user,
     });
     next();
   } catch (err: any) {
