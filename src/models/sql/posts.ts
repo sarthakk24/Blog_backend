@@ -1,33 +1,24 @@
 import { DataTypes, Model, Sequelize, Optional } from "sequelize";
 import sequelize from "../../loaders/database";
-
-const User = sequelize.define("user", {
+const Posts = sequelize.define("user", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true,
   },
-  firstName: {
+  title: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  lastName: {
-    type: DataTypes.STRING,
+  content: {
+    type: DataTypes.STRING(1234),
     allowNull: true,
   },
-  userName: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  password: {
-    type: DataTypes.STRING,
+  likes: {
+    type: DataTypes.BIGINT,
     allowNull: false,
   },
 });
 
-export default User;
+export default Posts;
