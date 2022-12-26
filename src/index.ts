@@ -3,23 +3,24 @@ import config from "./config/config";
 import sequelize from "./loaders/database";
 import Loaders from "./loaders/express";
 import Comments from "./models/sql/comments";
+import Keywords from "./models/sql/keywords";
 import Posts from "./models/sql/posts";
 import User from "./models/sql/user";
 
 async function startServer() {
   const app: express.Application = express();
   Loaders({ app });
-  User.hasMany(Posts, {
-    foreignKey: "uid",
-  });
+  User.hasMany(Posts);
   Posts.belongsTo(User);
+  // User.hasMany(Comments , { as :})
 
-  Posts.hasMany(Comments, {
-    foreignKey: "pid",
-  });
+  Posts.hasMany(Comments);
   Comments.belongsTo(Posts);
 
-  await sequelize.sync({ force: true });
+  Posts.hasMany(Keywords);
+  Keywords.belongsTo(Posts);
+
+  await sequelize.sync();
   app
     .listen(config.port, () => {
       console.log(`🛡️  Server listening on port: ${config.port}`);

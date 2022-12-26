@@ -1,22 +1,22 @@
 import { DataTypes, Model, Sequelize, Optional } from "sequelize";
 import sequelize from "../../loaders/database";
 
-const User = sequelize.define("user", {
+const User = sequelize.define("users", {
   id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
     allowNull: false,
     primaryKey: true,
   },
-  firstName: {
+  first_name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  lastName: {
+  last_name: {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  userName: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false,
   },

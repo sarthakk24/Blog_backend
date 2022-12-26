@@ -8,9 +8,11 @@ export const handleSignOut = async (
 ): Promise<void> => {
   try {
     await User.create({
-      firstName: "Sarthak",
-      lastName: "Sachdeva",
+      first_name: "Sarthak",
+      last_name: "Sachdeva",
       email: "sarthak.sachdeva.73@gmail.com",
+      username: "shockwave",
+      password: "shockwave",
     });
     console.log("signUp");
     res.status(200).json({
