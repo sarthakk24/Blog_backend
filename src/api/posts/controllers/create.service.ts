@@ -24,6 +24,13 @@ export const createPosts = async (
 
     const { title, content, keywords } = req.body;
 
+    if (!title) {
+      throw {
+        statusCode: 400,
+        message: "Title cannot be empty",
+      };
+    }
+
     const currentPost = await Posts.create({
       title,
       content,

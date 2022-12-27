@@ -45,20 +45,34 @@ export const updateComments = async (
       };
     }
 
-    const updatedComment = await Comments.update(
-      { content },
-      {
-        where: {
-          id,
-        },
-      }
-    );
+    if (content) {
+      const updatedComment = await Comments.update(
+        { content },
+        {
+          where: {
+            id,
+          },
+        }
+      );
+
+      res.status(200).json({
+        success: true,
+        message: `You updated a comment `,
+        data: updatedComment,
+      });
+    }
+
+    await Comments.destroy({
+      where: {
+        id,
+      },
+    });
 
     res.status(200).json({
       success: true,
-      message: `You updated a comment `,
-      data: updatedComment,
+      message: `You deleted comment because of no content`,
     });
+
     next();
   } catch (err: any) {
     res.status(err.statusCode || 500).json({
