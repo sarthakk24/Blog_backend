@@ -11,4 +11,5 @@ export default {
   api: {
     prefix: "/api",
   },
+  jwtSecret: process.env.JWT_SECRET || "testjwt",
 };
