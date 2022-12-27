@@ -11,7 +11,7 @@ export const updateComments = async (
   try {
     const user = await User.findOne({
       where: {
-        username: "sarthakk24",
+        username: "two",
       },
     });
 

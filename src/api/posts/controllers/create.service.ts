@@ -11,7 +11,7 @@ export const createPosts = async (
   try {
     const user = await User.findOne({
       where: {
-        username: "shockwave",
+        username: "two",
       },
     });
 

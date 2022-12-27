@@ -11,7 +11,7 @@ export const deleteComments = async (
   try {
     const user = await User.findOne({
       where: {
-        username: "shockwave",
+        username: "one",
       },
     });
 
@@ -52,7 +52,7 @@ export const deleteComments = async (
 
     res.status(200).json({
       success: true,
-      message: `You created a comment `,
+      message: `You deleted a comment `,
       data: deletedComment,
     });
     next();

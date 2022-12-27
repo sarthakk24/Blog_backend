@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import Comments from "../../../models/sql/comments";
+import Keywords from "../../../models/sql/keywords";
 import Posts from "../../../models/sql/posts";
 import User from "../../../models/sql/user";
 
-export const createComments = async (
+export const deletePosts = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -22,31 +23,49 @@ export const createComments = async (
       };
     }
 
-    const { content, postId } = req.body;
+    const { id } = req.params;
 
-    const post = await Posts.findOne({
+    const postData = await Posts.findOne({
       where: {
-        id: postId,
+        id,
       },
     });
 
-    if (!post) {
+    if (!postData) {
       throw {
         statusCode: 404,
-        message: "Post Not found",
+        message: "Post Not Found ",
       };
     }
 
-    const createdComment = await Comments.create({
-      content,
-      userId: user.dataValues.id,
-      postId: post.dataValues.id,
+    if (user.dataValues.id !== postData.dataValues.userId) {
+      throw {
+        statusCode: 401,
+        message: "You are not authenticated to delete this Post",
+      };
+    }
+
+    await Comments.destroy({
+      where: {
+        postId: id,
+      },
+    });
+
+    await Keywords.destroy({
+      where: {
+        postId: id,
+      },
+    });
+
+    await Posts.destroy({
+      where: {
+        id,
+      },
     });
 
     res.status(200).json({
       success: true,
-      message: `You created a comment `,
-      data: createdComment,
+      message: `You deleted a post`,
     });
     next();
   } catch (err: any) {
@@ -57,4 +76,4 @@ export const createComments = async (
   }
 };
 
-export default createComments;
+export default deletePosts;
