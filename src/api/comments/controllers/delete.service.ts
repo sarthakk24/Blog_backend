@@ -3,7 +3,7 @@ import Comments from "../../../models/sql/comments";
 import Posts from "../../../models/sql/posts";
 import User from "../../../models/sql/user";
 
-export const createComments = async (
+export const deleteComments = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -11,7 +11,7 @@ export const createComments = async (
   try {
     const user = await User.findOne({
       where: {
-        username: "sarthakk24",
+        username: "shockwave",
       },
     });
 
@@ -22,31 +22,38 @@ export const createComments = async (
       };
     }
 
-    const { content, postId } = req.body;
+    const { id } = req.params;
 
-    const post = await Posts.findOne({
+    const comment = await Comments.findOne({
       where: {
-        id: postId,
+        id,
       },
     });
 
-    if (!post) {
+    if (!comment) {
       throw {
         statusCode: 404,
-        message: "Post Not found",
+        message: "Comment Not Found ",
       };
     }
 
-    const createdComment = await Comments.create({
-      content,
-      userId: user.dataValues.id,
-      postId: post.dataValues.id,
+    if (user.dataValues.id !== comment.dataValues.userId) {
+      throw {
+        statusCode: 401,
+        message: "You are not authenticated to delete this comment",
+      };
+    }
+
+    const deletedComment = await Comments.destroy({
+      where: {
+        id,
+      },
     });
 
     res.status(200).json({
       success: true,
       message: `You created a comment `,
-      data: createdComment,
+      data: deletedComment,
     });
     next();
   } catch (err: any) {
@@ -57,4 +64,4 @@ export const createComments = async (
   }
 };
 
-export default createComments;
+export default deleteComments;
