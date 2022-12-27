@@ -9,8 +9,6 @@ export const createPosts = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    console.log(req.user);
-
     const user = await User.findOne({
       where: {
         id: req.user,

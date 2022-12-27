@@ -11,7 +11,7 @@ export const deleteComments = async (
   try {
     const user = await User.findOne({
       where: {
-        username: "one",
+        id: req.user,
       },
     });
 

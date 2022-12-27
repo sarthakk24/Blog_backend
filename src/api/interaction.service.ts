@@ -11,7 +11,7 @@ export const handleLike = async (
   try {
     const user = await User.findOne({
       where: {
-        username: "two",
+        id: req.user,
       },
     });
 
@@ -77,7 +77,7 @@ export const handleUnlike = async (
   try {
     const user = await User.findOne({
       where: {
-        username: "two",
+        id: req.user,
       },
     });
 

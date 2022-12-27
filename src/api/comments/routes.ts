@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { validateJwt } from "../../middlewares/verify-jwt";
 import { createComments } from "./controllers/create.service";
 import deleteComments from "./controllers/delete.service";
 import {
@@ -12,9 +13,9 @@ const commentsRouter = Router();
 commentsRouter.get("/", handleAllComments);
 commentsRouter.get("/:id", handleSpecificComment);
 
-commentsRouter.post("/", createComments);
+commentsRouter.post("/", validateJwt, createComments);
 
-commentsRouter.delete("/:id", deleteComments);
+commentsRouter.delete("/:id", validateJwt, deleteComments);
 
-commentsRouter.put("/:id", updateComments);
+commentsRouter.put("/:id", validateJwt, updateComments);
 export default commentsRouter;

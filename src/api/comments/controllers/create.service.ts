@@ -11,7 +11,7 @@ export const createComments = async (
   try {
     const user = await User.findOne({
       where: {
-        username: "two",
+        id: req.user,
       },
     });
 

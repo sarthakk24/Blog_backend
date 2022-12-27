@@ -12,7 +12,7 @@ postsRouter.get("/:id", handleSpecificPosts);
 
 postsRouter.post("/create", validateJwt, createPosts);
 
-postsRouter.delete("/:id", deletePosts);
+postsRouter.delete("/:id", validateJwt, deletePosts);
 
-postsRouter.put("/:id", updatePosts);
+postsRouter.put("/:id", validateJwt, updatePosts);
 export default postsRouter;

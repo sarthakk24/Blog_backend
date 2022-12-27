@@ -12,7 +12,7 @@ export const updatePosts = async (
   try {
     const user = await User.findOne({
       where: {
-        username: "two",
+        id: req.user,
       },
     });
 
