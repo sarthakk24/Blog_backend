@@ -1,6 +1,6 @@
-import { DataTypes, Model, Sequelize, Optional } from "sequelize";
+import { DataTypes } from "sequelize";
 import sequelize from "../../loaders/database";
-const Comments = sequelize.define("comments", {
+const Likes = sequelize.define("likes", {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -13,4 +13,4 @@ const Comments = sequelize.define("comments", {
   },
 });
 
-export default Comments;
+export default Likes;

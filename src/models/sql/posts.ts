@@ -15,10 +15,6 @@ const Posts = sequelize.define("posts", {
     type: DataTypes.STRING(1234),
     allowNull: true,
   },
-  likes: {
-    type: DataTypes.BIGINT,
-    allowNull: false,
-  },
 });
 
 export default Posts;

@@ -4,6 +4,7 @@ import sequelize from "./loaders/database";
 import Loaders from "./loaders/express";
 import Comments from "./models/sql/comments";
 import Keywords from "./models/sql/keywords";
+import Likes from "./models/sql/likes";
 import Posts from "./models/sql/posts";
 import User from "./models/sql/user";
 
@@ -19,6 +20,9 @@ async function startServer() {
 
   Posts.hasMany(Keywords);
   Keywords.belongsTo(Posts);
+
+  Posts.hasMany(Likes);
+  Likes.belongsTo(Posts);
 
   await sequelize.sync();
   app

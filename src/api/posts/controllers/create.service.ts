@@ -34,7 +34,6 @@ export const createPosts = async (
     const currentPost = await Posts.create({
       title,
       content,
-      likes: 0,
       userId: user.dataValues.id,
     });
 
