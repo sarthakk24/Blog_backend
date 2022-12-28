@@ -13,7 +13,6 @@ async function startServer() {
   Loaders({ app });
   User.hasMany(Posts);
   Posts.belongsTo(User);
-  // User.hasMany(Comments , { as :})
 
   Posts.hasMany(Comments);
   Comments.belongsTo(Posts);

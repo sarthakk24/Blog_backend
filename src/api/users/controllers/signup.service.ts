@@ -41,7 +41,6 @@ const signupUser = async (
     username,
     password: hash,
   });
-
   return newUser;
 };
 
@@ -66,9 +65,6 @@ export const handleSignUp = async (
       message: "Thank you for signing up",
       data: newUser,
     });
-
-    next();
-    console.log("signUp");
 
     next();
   } catch (err: any) {
