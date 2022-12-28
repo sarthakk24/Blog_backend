@@ -21,6 +21,10 @@
 - [EC2](https://aws.amazon.com/ec2/)
 - [RDS](https://aws.amazon.com/rds/)
 
+## Table chart
+![Screenshot (41)](https://user-images.githubusercontent.com/70757536/209871784-b0e63478-cb80-47bd-b9f0-7e85236d508f.png)
+
+
 ## Postman Documentaion 
 <img alt="postgres" src="https://user-images.githubusercontent.com/70757536/209806905-0248e6ca-181e-47f9-89e1-b262a3f970a6.svg" height="60" />https://documenter.getpostman.com/view/11197946/2s8Z6x4EXH
 
