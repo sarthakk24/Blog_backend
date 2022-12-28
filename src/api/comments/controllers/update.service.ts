@@ -60,18 +60,9 @@ export const updateComments = async (
         message: `You updated a comment `,
         data: updatedComment,
       });
+
+      next();
     }
-
-    await Comments.destroy({
-      where: {
-        id,
-      },
-    });
-
-    res.status(200).json({
-      success: true,
-      message: `You deleted comment because of no content`,
-    });
 
     next();
   } catch (err: any) {

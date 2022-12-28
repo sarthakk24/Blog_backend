@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import Comments from "../../../models/sql/comments";
 import Keywords from "../../../models/sql/keywords";
+import Likes from "../../../models/sql/likes";
 import Posts from "../../../models/sql/posts";
 import User from "../../../models/sql/user";
 
@@ -52,6 +53,12 @@ export const deletePosts = async (
     });
 
     await Keywords.destroy({
+      where: {
+        postId: id,
+      },
+    });
+
+    await Likes.destroy({
       where: {
         postId: id,
       },
