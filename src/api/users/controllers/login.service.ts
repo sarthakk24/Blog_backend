@@ -46,8 +46,8 @@ export const handleLogin = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { email, password } = req.body;
-    const resData = await signinUser(email, password);
+    const { identity, password } = req.body;
+    const resData = await signinUser(identity, password);
     res.status(200).json({
       success: true,
       message: "Login successful",
